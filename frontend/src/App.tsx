@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { createGlobalStyle } from 'styled-components';
-import './App.css';
 
 const GlobalStyle = createGlobalStyle`
   body {
