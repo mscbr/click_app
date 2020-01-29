@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import { primary, accentGray } from "../Styles";
+import { secondary, accentGray } from "../Styles";
 
 const StyledHeader = styled.div`
     display: flex;
@@ -11,7 +11,7 @@ const StyledHeader = styled.div`
     left: 0;
     width: 100vw;
     height: 30px;
-    background: ${accentGray};
+    background: ${secondary};
     color: white;
     margin: 0;
     span {
