@@ -1,21 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import { createGlobalStyle } from 'styled-components';
+import Header from "./components/shared/navigation/Header";
+
+import { createGlobalStyle } from "styled-components";
+import { primary } from "./components/shared/Styles";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    padding: 20px;
-    background: salmon;
+    font-family: 'Roboto', sans-serif;
+    background: ${primary};
   }
 `;
 
 const App: React.FC = () => {
   return (
     <>
+      <Header />
       <GlobalStyle />
-      <div className='App'>
-        <h1>ST F U</h1>
-      </div>
     </>
   );
 };
