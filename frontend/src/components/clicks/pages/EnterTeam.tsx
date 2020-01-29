@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Card from "../../shared/ui-elements/Card";
+import Card from '../../shared/ui-elements/Card';
 
-const LEADERBOARD = ["api dummy mock will go here"];
+const LEADERBOARD = ['api dummy mock will go here'];
 
 const StyledMain = styled.main`
     max-width: 500px;

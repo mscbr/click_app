@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledFooter = styled.div`
     position: fixed;
@@ -26,9 +26,9 @@ const Footer: React.FC = () => {
     return (
         <StyledFooter>
             <span>
-                If you don't like this page, it is{" "}
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">your</a>{" "}
-                fault.{" "}
+                If you don't like this page, it is{' '}
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">your</a>{' '}
+                fault.{' '}
             </span>
         </StyledFooter>
     );
