@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Card from '../../shared/ui-elements/Card';
+import QuoteBlock from '../../clicks/components/QuoteBlock';
 
 const LEADERBOARD = ['api dummy mock will go here'];
 
@@ -14,6 +15,10 @@ const StyledMain = styled.main`
 const EnterTeam: React.FC = () => {
     return (
         <StyledMain>
+            <QuoteBlock
+                paragraph={'Click me baby wone more time...'}
+                cite={'The Button'}
+            />
             <Card />
         </StyledMain>
     );
