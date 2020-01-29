@@ -13,7 +13,6 @@ const StyledHeader = styled.div`
     height: 30px;
     background: ${accentGray};
     color: white;
-    text-align: center;
     margin: 0;
     span {
         letter-spacing: 1px;
