@@ -6,8 +6,16 @@ import styled from 'styled-components';
 /// citee
 
 const StyledBlockQuote = styled.blockquote`
-    width: 100%;
-    padding: 1em 2em 1em 2em;
+    padding: 1em;
+    font-style: italic;
+    p {
+        display: block;
+        text-align: left;
+    }
+    cite {
+        display: block;
+        text-align: right;
+    }
 `;
 
 interface Props {
@@ -19,7 +27,11 @@ const QuoteBlock: React.FC<Props> = props => {
     const { paragraph, cite } = props;
     return (
         <StyledBlockQuote>
-            <p>{paragraph}</p>
+            <p>
+                {'"'}
+                {paragraph}
+                {'"'}
+            </p>
             <cite>
                 {`~ `}
                 {cite}
