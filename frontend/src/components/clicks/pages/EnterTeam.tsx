@@ -6,6 +6,7 @@ import TextInput from '../../shared/ui-elements/TextInput';
 import Button from '../../shared/ui-elements/Button';
 import QuoteBlock from '../../clicks/components/QuoteBlock';
 import Ribbon from '../../clicks/components/Ribbon';
+import ScoreBoard from '../components/ScoreBoard';
 
 const LEADERBOARD = [
     {
@@ -30,7 +31,7 @@ const LEADERBOARD = [
     },
     {
         order: 5,
-        team: 'chujcietoobchodzi',
+        team: 'XDD',
         clicks: 129344
     },
     {
@@ -120,6 +121,7 @@ const EnterTeam: React.FC = () => {
                     <Button text="CLICK!" />
                 </StyledCardTop>
                 <Ribbon title="TOP 10 Clickers" />
+                <ScoreBoard data={LEADERBOARD} count={10} />
             </Card>
         </StyledMain>
     );
