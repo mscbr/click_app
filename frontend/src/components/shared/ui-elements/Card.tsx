@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { secondary } from '../Styles';
 
 const StyledCard = styled.div`
+    display: flex;
+    flex-direction: column;
     margin: 32px auto;
     padding: 16px 0;
     width: 100%;
