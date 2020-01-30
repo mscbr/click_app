@@ -10,7 +10,7 @@ const StyledCard = styled.div`
     padding: 16px 0;
     width: 100%;
     background: white;
-    border: 2px solid ${secondary};
+    border: 3px solid ${secondary};
     border-radius: 12px;
 `;
 
