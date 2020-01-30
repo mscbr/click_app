@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Card from '../../shared/ui-elements/Card';
@@ -19,6 +19,7 @@ const StyledCardTop = styled.div`
 `;
 
 const EnterTeam: React.FC = () => {
+    const [name, setName] = useState();
     return (
         <StyledMain>
             <QuoteBlock
@@ -30,6 +31,8 @@ const EnterTeam: React.FC = () => {
                     <TextInput
                         label="Enter your team name"
                         placeholder="Team name"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                     />
                     <Button text="CLICK!" />
                 </StyledCardTop>

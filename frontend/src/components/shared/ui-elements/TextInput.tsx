@@ -29,17 +29,24 @@ const StyledTextInput = styled.div`
 interface Props {
     label?: string;
     placeholder?: string;
+    value?: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInput: React.FC<Props> = props => {
-    const { label, placeholder } = props;
+    const { label, placeholder, value, onChange } = props;
     return (
         <StyledTextInput>
             <label>
                 {label}
                 {`:`}
             </label>
-            <input type="text" placeholder={placeholder} />
+            <input
+                type="text"
+                placeholder={placeholder}
+                value={value || ''}
+                onChange={onChange}
+            />
         </StyledTextInput>
     );
 };
