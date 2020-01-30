@@ -101,6 +101,10 @@ const StyledCardTop = styled.div`
     justify-content: space-between;
     padding: 0 24px 0 24px;
 `;
+const StyledP = styled.p`
+    text-align: center;
+    font-style: italic;
+`;
 
 const EnterTeam: React.FC = () => {
     const [name, setName] = useState();
@@ -122,6 +126,7 @@ const EnterTeam: React.FC = () => {
                 </StyledCardTop>
                 <Ribbon title="TOP 10 Clickers" />
                 <ScoreBoard data={LEADERBOARD} count={10} />
+                <StyledP>Want to be top? STFU and click!</StyledP>
             </Card>
         </StyledMain>
     );
