@@ -6,7 +6,7 @@ import { secondary, accentGray } from '../../shared/Styles';
 const StyledRibbon = styled.div`
     padding: 1em;
     min-width: 30%;
-    margin: 20px auto;
+    margin: 100px auto 20px auto;
     position: relative;
     color: white;
     text-align: center;
@@ -17,7 +17,6 @@ const StyledRibbon = styled.div`
     &:before,
     &:after {
         content: '';
-        /* width: 0.45em; */
         bottom: -0.5em;
         position: absolute;
         display: block;

@@ -3,10 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledFooter = styled.div`
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     bottom: 0;
     left: 0;
     width: 100vw;
@@ -16,7 +12,7 @@ const StyledFooter = styled.div`
     text-align: center;
     margin: 0;
     span {
-        font-size: small;
+        font-size: medium;
         font-weight: 300;
         font-style: italic;
     }

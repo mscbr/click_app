@@ -13,6 +13,11 @@ const StyledTable = styled.table`
     }
     thead {
         background: transparent;
+        color: ${accentGray};
+        text-transform: uppercase;
+        font-size: 0.8em;
+        font-weight: bold;
+        padding: 0.5em;
         td:nth-child(2) {
             text-align: center;
         }
