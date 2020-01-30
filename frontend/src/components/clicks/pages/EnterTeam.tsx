@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Card from '../../shared/ui-elements/Card';
+import TextInput from '../../shared/ui-elements/TextInput';
+import Button from '../../shared/ui-elements/Button';
 import QuoteBlock from '../../clicks/components/QuoteBlock';
 
 const LEADERBOARD = ['api dummy mock will go here'];
@@ -11,6 +13,10 @@ const StyledMain = styled.main`
     margin: 0 auto;
     padding: 0 24px;
 `;
+const StyledCardTop = styled.div`
+    display: flex;
+    padding: 0 24px 0 24px;
+`;
 
 const EnterTeam: React.FC = () => {
     return (
@@ -19,7 +25,15 @@ const EnterTeam: React.FC = () => {
                 paragraph={'Click me baby wone more time...'}
                 cite={'The Button'}
             />
-            <Card />
+            <Card>
+                <StyledCardTop>
+                    <TextInput
+                        label="Enter your team name"
+                        placeholder="Team name"
+                    />
+                    <Button text="CLICK!" />
+                </StyledCardTop>
+            </Card>
         </StyledMain>
     );
 };
