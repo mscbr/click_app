@@ -5,6 +5,7 @@ import Card from '../../shared/ui-elements/Card';
 import TextInput from '../../shared/ui-elements/TextInput';
 import Button from '../../shared/ui-elements/Button';
 import QuoteBlock from '../../clicks/components/QuoteBlock';
+import Ribbon from '../../clicks/components/Ribbon';
 
 const LEADERBOARD = ['api dummy mock will go here'];
 
@@ -15,6 +16,7 @@ const StyledMain = styled.main`
 `;
 const StyledCardTop = styled.div`
     display: flex;
+    justify-content: space-between;
     padding: 0 24px 0 24px;
 `;
 
@@ -36,6 +38,7 @@ const EnterTeam: React.FC = () => {
                     />
                     <Button text="CLICK!" />
                 </StyledCardTop>
+                <Ribbon title="TOP 10 Clickers" />
             </Card>
         </StyledMain>
     );
