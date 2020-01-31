@@ -68,7 +68,7 @@ const ScoreBoard: React.FC<Props> = props => {
                     data.map((position, i) => {
                         if (count)
                             return i < count ? (
-                                <tr>
+                                <tr key={position.team + i}>
                                     <th>{position.order}</th>
                                     <th>{position.team}</th>
                                     <th>{position.clicks}</th>
@@ -76,7 +76,7 @@ const ScoreBoard: React.FC<Props> = props => {
                             ) : null;
 
                         return (
-                            <tr>
+                            <tr key={position.team + i}>
                                 <th>{position.order}</th>
                                 <th>{position.team}</th>
                                 <th>{position.clicks}</th>
