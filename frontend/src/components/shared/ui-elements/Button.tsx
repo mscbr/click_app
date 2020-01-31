@@ -10,7 +10,7 @@ const StyledButton = styled.button`
     border: none;
     outline: none;
     border-radius: 6px;
-    margin-left: 16px;
+    /* margin-left: 16px; */
     text-transform: uppercase;
     font-size: 21px;
     transition: 0.2s;
@@ -27,10 +27,13 @@ const StyledButton = styled.button`
 
 interface Props {
     text?: string;
+    className?: string;
 }
 
 const Button: React.FC<Props> = props => {
-    return <StyledButton>{props.text}</StyledButton>;
+    return (
+        <StyledButton className={props.className}>{props.text}</StyledButton>
+    );
 };
 
 export default Button;
