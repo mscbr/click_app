@@ -107,16 +107,23 @@ const StyledP = styled.p`
     text-align: center;
     font-style: italic;
 `;
+const StyledH1 = styled.h1`
+    text-align: center;
+    font-weight: 400;
+    span {
+        font-weight: bold;
+    }
+`;
+interface Props extends RouteComponentProps<{ teamName: string }> {}
 
-const ClickTeam: React.FC<RouteComponentProps> = props => {
+const ClickTeam: React.FC<Props> = props => {
     console.log('ClickTeam props', props);
     const [name, setName] = useState();
     return (
         <StyledMain>
-            <QuoteBlock
-                paragraph={'Click me baby wone more time...'}
-                cite={'The Button'}
-            />
+            <StyledH1>
+                Clicking for team <span>{props.match.params.teamName}</span>
+            </StyledH1>
             <Card>
                 <StyledCardTop>
                     <Button text="CLICK!" />
