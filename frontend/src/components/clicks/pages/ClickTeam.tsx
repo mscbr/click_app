@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import Card from '../../shared/ui-elements/Card';
 import TextInput from '../../shared/ui-elements/TextInput';
 import Button from '../../shared/ui-elements/Button';
-import QuoteBlock from '../../clicks/components/QuoteBlock';
-import Ribbon from '../../clicks/components/Ribbon';
 import ScoreBoard from '../components/ScoreBoard';
 
 const LEADERBOARD = [
@@ -114,6 +112,25 @@ const StyledH1 = styled.h1`
         font-weight: bold;
     }
 `;
+const StyledCopyPaste = styled.div`
+    text-align: center;
+    label {
+        display: inline-block;
+        font-size: medium;
+        font-style: italic;
+    }
+    input {
+        display: inline-block;
+        width: 184px;
+        /*disabling focus*/
+        color: transparent;
+        text-shadow: 0px 0px 0px black;
+        font-size: small;
+        font-style: italic;
+        margin-left: 5px;
+    }
+`;
+
 interface Props extends RouteComponentProps<{ teamName: string }> {}
 
 const ClickTeam: React.FC<Props> = props => {
@@ -124,6 +141,14 @@ const ClickTeam: React.FC<Props> = props => {
             <StyledH1>
                 Clicking for team <span>{props.match.params.teamName}</span>
             </StyledH1>
+            <StyledCopyPaste>
+                {/* <label>Too lazy to click? Let your pals click for you: </label>
+                <input type="text" value={window.location.href} /> */}
+                <TextInput
+                    value={window.location.href}
+                    label="Too lazy to click? Let your pals click for you"
+                />
+            </StyledCopyPaste>
             <Card>
                 <StyledCardTop>
                     <Button text="CLICK!" />
