@@ -14,4 +14,4 @@ export const scoreBoardBandPass = (
             acc.push(...src.slice(i - 3, i + 4));
         }
         return acc;
-    }, [] as {}[]);
+    }, [] as { order: number; team: string; clicks: number }[]);
