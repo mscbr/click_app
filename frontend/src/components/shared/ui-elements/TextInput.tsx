@@ -46,6 +46,7 @@ const TextInput: React.FC<Props> = props => {
                 placeholder={placeholder}
                 value={value || ''}
                 onChange={onChange}
+                readOnly={onChange ? false : true}
             />
         </StyledTextInput>
     );
