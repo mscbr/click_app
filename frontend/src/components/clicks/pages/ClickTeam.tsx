@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
+import { secondary } from '../../shared/Styles';
 import * as data from '../../../helpers/data';
 
 import Card from '../../shared/ui-elements/Card';
@@ -96,6 +97,15 @@ const StyledMain = styled.main`
     max-width: 500px;
     margin: 0 auto;
     padding: 0 24px;
+
+    /* ScoreBoard overwrites*/
+    tbody {
+        tr:nth-child(4) {
+            background: ${secondary};
+            font-size: 1.5em;
+            color: white;
+        }
+    }
 `;
 const StyledCardTop = styled.div`
     display: flex;
@@ -136,10 +146,6 @@ const StyledCopyPaste = styled.div`
 interface Props extends RouteComponentProps<{ teamName: string }> {}
 
 const ClickTeam: React.FC<Props> = props => {
-    console.log(
-        'ClickTeam bandpass',
-        data.scoreBoardBandPass(LEADERBOARD, 'Andrii')
-    );
     const { teamName } = props.match.params;
     return (
         <StyledMain>
