@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
+import * as data from '../../../helpers/data';
 
 import Card from '../../shared/ui-elements/Card';
 import TextInput from '../../shared/ui-elements/TextInput';
@@ -135,12 +136,15 @@ const StyledCopyPaste = styled.div`
 interface Props extends RouteComponentProps<{ teamName: string }> {}
 
 const ClickTeam: React.FC<Props> = props => {
-    console.log('ClickTeam props', props);
-    const [name, setName] = useState();
+    console.log(
+        'ClickTeam bandpass',
+        data.scoreBoardBandPass(LEADERBOARD, 'Andrii')
+    );
+    const { teamName } = props.match.params;
     return (
         <StyledMain>
             <StyledH1>
-                Clicking for team <span>{props.match.params.teamName}</span>
+                Clicking for team <span>{teamName}</span>
             </StyledH1>
             <StyledCopyPaste>
                 {/* <label>Too lazy to click? Let your pals click for you: </label>
@@ -155,7 +159,10 @@ const ClickTeam: React.FC<Props> = props => {
                     <Button text="CLICK!" />
                 </StyledCardTop>
                 <CurrentScore />
-                <ScoreBoard data={LEADERBOARD} count={7} />
+                <ScoreBoard
+                    data={data.scoreBoardBandPass(LEADERBOARD, teamName)}
+                    count={7}
+                />
                 <StyledP>Want to be top? STFU and click!</StyledP>
             </Card>
         </StyledMain>
