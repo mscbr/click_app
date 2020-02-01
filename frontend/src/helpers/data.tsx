@@ -9,8 +9,9 @@ export const scoreBoardBandPass = (
     }[],
     team: string
 ) =>
-    data.filter((item, i, arr) => {
+    data.reduce((acc, item, i, src) => {
         if (item.team === team) {
-            return arr.slice(i - 3, i + 3);
+            acc.push(...src.slice(i - 3, i + 4));
         }
-    });
+        return acc;
+    }, [] as {}[]);
