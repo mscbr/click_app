@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Card from '../../shared/ui-elements/Card';
 import TextInput from '../../shared/ui-elements/TextInput';
 import Button from '../../shared/ui-elements/Button';
 import ScoreBoard from '../components/ScoreBoard';
+import CurrentScore from '../components/CurrentScore';
 
 const LEADERBOARD = [
     {
@@ -153,7 +154,8 @@ const ClickTeam: React.FC<Props> = props => {
                 <StyledCardTop>
                     <Button text="CLICK!" />
                 </StyledCardTop>
-                <ScoreBoard data={LEADERBOARD} count={8} />
+                <CurrentScore />
+                <ScoreBoard data={LEADERBOARD} count={7} />
                 <StyledP>Want to be top? STFU and click!</StyledP>
             </Card>
         </StyledMain>
