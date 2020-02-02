@@ -9,3 +9,9 @@ export interface State {
         team_clicks: number;
     };
 }
+
+export interface LeaderBoardItem {
+    order: number;
+    team: string;
+    clicks: number;
+}

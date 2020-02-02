@@ -12,7 +12,7 @@ import Button from '../../shared/ui-elements/Button';
 import ScoreBoard from '../components/ScoreBoard';
 import CurrentScore from '../components/CurrentScore';
 
-import { click } from '../../../redux/actions/click';
+import { click } from '../../../redux/actions/';
 
 const StyledMain = styled.main`
     max-width: 500px;

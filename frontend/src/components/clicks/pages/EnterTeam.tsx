@@ -9,6 +9,8 @@ import QuoteBlock from '../../clicks/components/QuoteBlock';
 import Ribbon from '../../clicks/components/Ribbon';
 import ScoreBoard from '../components/ScoreBoard';
 
+import { getScoreBoard } from '../../../redux/actions/';
+
 const StyledMain = styled.main`
     max-width: 500px;
     margin: 0 auto;
