@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -9,7 +9,7 @@ import QuoteBlock from '../../clicks/components/QuoteBlock';
 import Ribbon from '../../clicks/components/Ribbon';
 import ScoreBoard from '../components/ScoreBoard';
 
-import { getScoreBoard } from '../../../redux/actions/';
+import { getScoresSuccess } from '../../../redux/actions/';
 
 const StyledMain = styled.main`
     max-width: 500px;
@@ -29,9 +29,17 @@ const StyledButton = styled(Button)`
     margin-left: 16px;
 `;
 
-const EnterTeam: React.FC<State> = props => {
+interface Props extends State {
+    getScoresSuccess: () => void;
+}
+
+const EnterTeam: React.FC<Props> = props => {
     const [name, setName] = useState();
-    const { leaderBoard } = props;
+    const { leaderBoard, getScoresSuccess } = props;
+    useEffect(() => {
+        console.log('useEffect', props);
+        getScoresSuccess();
+    }, []);
     return (
         <StyledMain>
             <QuoteBlock
@@ -72,5 +80,10 @@ const mapStateToProps = (state: State) => {
         leaderBoard: state.leaderBoard
     };
 };
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        getScoresSuccess: () => dispatch(getScoresSuccess())
+    };
+};
 
-export default connect(mapStateToProps)(EnterTeam);
+export default connect(mapStateToProps, mapDispatchToProps)(EnterTeam);

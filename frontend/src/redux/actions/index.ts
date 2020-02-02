@@ -11,9 +11,18 @@ export const click = (team: string, session: string) => {
     };
 };
 
-export const getScoreBoard = (scores: LeaderBoardItem[]) => {
-    return async (dispatch: any, getState: any) => {
-        const data = await axios.get();
-        dispatch({ type: 'GET_SCORE_BOARD', scores });
+export const getScoresSuccess = () => {
+    return async (dispatch: any) => {
+        let data;
+        try {
+            data = await axios.get(
+                `http://klikuj.herokuapp.com/api/v1/leaderboard`
+            );
+        } catch (err) {
+            console.log(err);
+        }
+
+        // const data = [{}];
+        dispatch({ type: 'GET_LEADERBOARD_REQUEST', payload: data || [] });
     };
 };
