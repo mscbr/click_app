@@ -28,11 +28,14 @@ const StyledButton = styled.button`
 interface Props {
     text?: string;
     className?: string;
+    onClick?: () => any;
 }
 
 const Button: React.FC<Props> = props => {
     return (
-        <StyledButton className={props.className}>{props.text}</StyledButton>
+        <StyledButton className={props.className} onClick={props.onClick}>
+            {props.text}
+        </StyledButton>
     );
 };
 
