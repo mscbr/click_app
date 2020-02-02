@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
+import { State } from '../../../redux/types';
 import styled from 'styled-components';
 import { secondary } from '../../shared/Styles';
 import * as data from '../../../helpers/data';
@@ -10,6 +11,8 @@ import TextInput from '../../shared/ui-elements/TextInput';
 import Button from '../../shared/ui-elements/Button';
 import ScoreBoard from '../components/ScoreBoard';
 import CurrentScore from '../components/CurrentScore';
+
+import { click } from '../../../redux/actions/click';
 
 const StyledMain = styled.main`
     max-width: 500px;
@@ -61,29 +64,20 @@ const StyledCopyPaste = styled.div`
     }
 `;
 
-interface Props extends RouteComponentProps<{ teamName: string }> {
-    leaderBoard?: {
-        order: number;
-        team: string;
-        clicks: number;
-    }[];
-    currentScore?: {
-        your_clicks: number;
-        team_clicks: number;
-    };
+interface Props extends RouteComponentProps<{ teamName: string }>, State {
+    click: (team: string, session: string) => any;
 }
 
 const ClickTeam: React.FC<Props> = props => {
     const { teamName } = props.match.params;
-    const { leaderBoard, currentScore } = props;
+    const { leaderBoard, currentScore, click } = props;
+    console.log('ClickTeam', props);
     return (
         <StyledMain>
             <StyledH1>
                 Clicking for team <span>{teamName}</span>
             </StyledH1>
             <StyledCopyPaste>
-                {/* <label>Too lazy to click? Let your pals click for you: </label>
-                <input type="text" value={window.location.href} /> */}
                 <TextInput
                     value={window.location.href}
                     label="Too lazy to click? Let your pals click for you"
@@ -91,7 +85,10 @@ const ClickTeam: React.FC<Props> = props => {
             </StyledCopyPaste>
             <Card>
                 <StyledCardTop>
-                    <Button text="CLICK!" />
+                    <Button
+                        text="CLICK!"
+                        onClick={() => click(teamName, 'random-string')}
+                    />
                 </StyledCardTop>
                 <CurrentScore
                     your_clicks={currentScore ? currentScore.your_clicks : 0}
@@ -107,22 +104,18 @@ const ClickTeam: React.FC<Props> = props => {
     );
 };
 
-interface State {
-    leaderBoard?: {
-        order: number;
-        team: string;
-        clicks: number;
-    }[];
-    currentScore?: {
-        your_clicks: number;
-        team_clicks: number;
-    };
-}
 const mapStateToProps = (state: State) => {
     return {
         leaderBoard: state.leaderBoard,
         currentScore: state.currentScore
     };
 };
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        click: (team: string, session: string) => {
+            dispatch(click(team, session));
+        }
+    };
+};
 
-export default connect(mapStateToProps)(ClickTeam);
+export default connect(mapStateToProps, mapDispatchToProps)(ClickTeam);

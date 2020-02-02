@@ -88,6 +88,13 @@ const initState = {
 };
 
 const rootReducer = (state = initState, action: any) => {
+    console.log(action);
+    switch (action.type) {
+        case 'CLICK':
+            console.log('CLICEKDDD');
+        default:
+            return state;
+    }
     return state;
 };
 
