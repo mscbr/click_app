@@ -84,20 +84,32 @@ const initState = {
     currentScore: {
         your_clicks: 0,
         team_clicks: 0
-    }
+    },
+    session: ''
 };
 
 const rootReducer = (state = initState, action: any) => {
     console.log(action);
+
+    const { payload } = action;
     switch (action.type) {
+        case 'SET_SESSION':
+            return {
+                ...state,
+                session: payload.session
+            };
         case 'CLICK':
-            return state;
-        case 'GET_LEADERBOARD_REQUEST':
-            const { data, status } = action.payload;
-            return status === 200
+            return payload.status === 200
                 ? {
                       ...state,
-                      leaderBoard: data
+                      currentScore: payload.data
+                  }
+                : state;
+        case 'GET_LEADERBOARD_REQUEST':
+            return payload.status === 200
+                ? {
+                      ...state,
+                      leaderBoard: payload.data
                   }
                 : state;
         default:

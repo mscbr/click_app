@@ -9,7 +9,7 @@ import QuoteBlock from '../../clicks/components/QuoteBlock';
 import Ribbon from '../../clicks/components/Ribbon';
 import ScoreBoard from '../components/ScoreBoard';
 
-import { getScoresSuccess } from '../../../redux/actions/';
+import { getLeaderBoard } from '../../../redux/actions/';
 
 const StyledMain = styled.main`
     max-width: 500px;
@@ -30,16 +30,18 @@ const StyledButton = styled(Button)`
 `;
 
 interface Props extends State {
-    getScoresSuccess: () => void;
+    getLeaderBoard: () => any;
 }
 
 const EnterTeam: React.FC<Props> = props => {
     const [name, setName] = useState();
-    const { leaderBoard, getScoresSuccess } = props;
+    const { leaderBoard, getLeaderBoard } = props;
+
+    // ComponentDidMount
     useEffect(() => {
-        console.log('useEffect', props);
-        getScoresSuccess();
+        getLeaderBoard();
     }, []);
+
     return (
         <StyledMain>
             <QuoteBlock
@@ -82,7 +84,7 @@ const mapStateToProps = (state: State) => {
 };
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        getScoresSuccess: () => dispatch(getScoresSuccess())
+        getLeaderBoard: () => dispatch(getLeaderBoard())
     };
 };
 

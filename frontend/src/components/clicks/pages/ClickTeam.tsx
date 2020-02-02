@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { State } from '../../../redux/types';
@@ -12,7 +12,7 @@ import Button from '../../shared/ui-elements/Button';
 import ScoreBoard from '../components/ScoreBoard';
 import CurrentScore from '../components/CurrentScore';
 
-import { click } from '../../../redux/actions/';
+import { click, setSession, getLeaderBoard } from '../../../redux/actions/';
 
 const StyledMain = styled.main`
     max-width: 500px;
@@ -66,12 +66,25 @@ const StyledCopyPaste = styled.div`
 
 interface Props extends RouteComponentProps<{ teamName: string }>, State {
     click: (team: string, session: string) => any;
+    setSession: (session: string) => any;
+    getLeaderBoard: () => any;
 }
 
 const ClickTeam: React.FC<Props> = props => {
     const { teamName } = props.match.params;
-    const { leaderBoard, currentScore, click } = props;
-    console.log('ClickTeam', props);
+    const {
+        leaderBoard,
+        currentScore,
+        click,
+        setSession,
+        getLeaderBoard
+    } = props;
+
+    // ComponentDidMount
+    useEffect(() => {
+        setSession('randomly-gen-string');
+        getLeaderBoard();
+    }, []);
     return (
         <StyledMain>
             <StyledH1>
@@ -112,9 +125,10 @@ const mapStateToProps = (state: State) => {
 };
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        click: (team: string, session: string) => {
-            dispatch(click(team, session));
-        }
+        click: (team: string, session: string) =>
+            dispatch(click(team, session)),
+        setSession: (session: string) => dispatch(setSession(session)),
+        getLeaderBoard: () => dispatch(getLeaderBoard())
     };
 };
 

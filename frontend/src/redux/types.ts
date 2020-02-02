@@ -8,6 +8,7 @@ export interface State {
         your_clicks: number;
         team_clicks: number;
     };
+    session?: string;
 }
 
 export interface LeaderBoardItem {
