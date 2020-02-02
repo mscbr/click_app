@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 import { secondary } from '../../shared/Styles';
@@ -9,89 +10,6 @@ import TextInput from '../../shared/ui-elements/TextInput';
 import Button from '../../shared/ui-elements/Button';
 import ScoreBoard from '../components/ScoreBoard';
 import CurrentScore from '../components/CurrentScore';
-
-const LEADERBOARD = [
-    {
-        order: 1,
-        team: 'YourTestApp',
-        clicks: 255773
-    },
-    {
-        order: 2,
-        team: 'Prsicek',
-        clicks: 219691
-    },
-    {
-        order: 3,
-        team: 'kkk.',
-        clicks: 219411
-    },
-    {
-        order: 4,
-        team: 'MK',
-        clicks: 153625
-    },
-    {
-        order: 5,
-        team: 'XDD',
-        clicks: 129344
-    },
-    {
-        order: 6,
-        team: 'aut',
-        clicks: 84081
-    },
-    {
-        order: 7,
-        team: 'Hrm',
-        clicks: 60798
-    },
-    {
-        order: 8,
-        team: '-___-',
-        clicks: 60769
-    },
-    {
-        order: 9,
-        team: 'Andrii',
-        clicks: 50192
-    },
-    {
-        order: 10,
-        team: 'a',
-        clicks: 35314
-    },
-    {
-        order: 11,
-        team: 'I think, this is a bug',
-        clicks: 26684
-    },
-    {
-        order: 12,
-        team: '🌋',
-        clicks: 26049
-    },
-    {
-        order: 13,
-        team: 'LUV',
-        clicks: 25663
-    },
-    {
-        order: 14,
-        team: '1',
-        clicks: 24011
-    },
-    {
-        order: 15,
-        team: 'undefined',
-        clicks: 19374
-    },
-    {
-        order: 16,
-        team: 'Your mom',
-        clicks: 16187
-    }
-];
 
 const StyledMain = styled.main`
     max-width: 500px;
@@ -143,7 +61,17 @@ const StyledCopyPaste = styled.div`
     }
 `;
 
-interface Props extends RouteComponentProps<{ teamName: string }> {}
+interface Props extends RouteComponentProps<{ teamName: string }> {
+    leaderBoard?: {
+        order: number;
+        team: string;
+        clicks: number;
+    }[];
+    currentScore?: {
+        my_clicks: number;
+        team_clicks: number;
+    };
+}
 
 const ClickTeam: React.FC<Props> = props => {
     const { teamName } = props.match.params;
@@ -175,4 +103,21 @@ const ClickTeam: React.FC<Props> = props => {
     );
 };
 
-export default ClickTeam;
+interface State {
+    leaderBoard?: {
+        order: number;
+        team: string;
+        clicks: number;
+    }[];
+    currentScore?: {
+        my_clicks: number;
+        team_clicks: number;
+    };
+}
+const mapStateToProps = (state: State) => {
+    return {
+        leaderBoard: state.leaderBoard
+    };
+};
+
+export default connect(mapStateToProps)(ClickTeam);
