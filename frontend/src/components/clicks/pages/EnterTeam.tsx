@@ -29,7 +29,6 @@ const StyledButton = styled(Button)`
 
 const EnterTeam: React.FC<State> = props => {
     const [name, setName] = useState();
-    console.log(props);
     const { leaderBoard } = props;
     return (
         <StyledMain>
@@ -62,7 +61,7 @@ interface State {
         clicks: number;
     }[];
     currentScore?: {
-        my_clicks: number;
+        your_clicks: number;
         team_clicks: number;
     };
 }

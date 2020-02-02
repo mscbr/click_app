@@ -3,11 +3,6 @@ import styled from 'styled-components';
 
 import { secondary } from '../../shared/Styles';
 
-const RESULT = {
-    your_clicks: 997,
-    team_clicks: 2000
-};
-
 const ScorePanel = styled.div`
     text-align: center;
     width: 100%;
@@ -30,20 +25,21 @@ const StyledScore = styled.div`
 `;
 
 interface Props {
-    team?: string;
-    session?: string;
+    your_clicks: number;
+    team_clicks: number;
 }
 
 const CurrentScore: React.FC<Props> = props => {
+    const { your_clicks, team_clicks } = props;
     return (
         <ScorePanel>
             <StyledScore>
                 <label>Your Clicks:</label>
-                <span>{RESULT.your_clicks}</span>
+                <span>{your_clicks}</span>
             </StyledScore>
             <StyledScore>
                 <label>Team Clicks:</label>
-                <span>{RESULT.team_clicks}</span>
+                <span>{team_clicks}</span>
             </StyledScore>
         </ScorePanel>
     );

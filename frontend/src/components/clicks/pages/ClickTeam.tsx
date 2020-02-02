@@ -68,13 +68,14 @@ interface Props extends RouteComponentProps<{ teamName: string }> {
         clicks: number;
     }[];
     currentScore?: {
-        my_clicks: number;
+        your_clicks: number;
         team_clicks: number;
     };
 }
 
 const ClickTeam: React.FC<Props> = props => {
     const { teamName } = props.match.params;
+    const { leaderBoard, currentScore } = props;
     return (
         <StyledMain>
             <StyledH1>
@@ -92,9 +93,12 @@ const ClickTeam: React.FC<Props> = props => {
                 <StyledCardTop>
                     <Button text="CLICK!" />
                 </StyledCardTop>
-                <CurrentScore />
+                <CurrentScore
+                    your_clicks={currentScore ? currentScore.your_clicks : 0}
+                    team_clicks={currentScore ? currentScore.team_clicks : 0}
+                />
                 <ScoreBoard
-                    data={data.scoreBoardBandPass(LEADERBOARD, teamName)}
+                    data={data.scoreBoardBandPass(leaderBoard || [], teamName)}
                     count={7}
                 />
                 <StyledP>Want to be top? STFU and click!</StyledP>
@@ -110,13 +114,14 @@ interface State {
         clicks: number;
     }[];
     currentScore?: {
-        my_clicks: number;
+        your_clicks: number;
         team_clicks: number;
     };
 }
 const mapStateToProps = (state: State) => {
     return {
-        leaderBoard: state.leaderBoard
+        leaderBoard: state.leaderBoard,
+        currentScore: state.currentScore
     };
 };
 
