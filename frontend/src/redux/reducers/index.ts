@@ -81,7 +81,10 @@ const initState = {
             clicks: 16187
         }
     ],
-    currentScore: {}
+    currentScore: {
+        your_clicks: 997,
+        team_clicks: 2000
+    }
 };
 
 const rootReducer = (state = initState, action: any) => {
