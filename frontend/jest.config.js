@@ -20,5 +20,9 @@ module.exports = {
     testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
 
     // Module file extensions for importing
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+
+    // In order to find module imports/exports from index
+    modulePaths: ['src', 'test'],
+    testEnvironment: 'jest-environment-jsdom'
 };
