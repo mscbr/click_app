@@ -96,13 +96,14 @@ const rootReducer = (state = initState, action: any) => {
         case 'SET_SESSION':
             return {
                 ...state,
-                session: payload.session
+                session: payload
             };
         case 'CLICK':
-            return payload.status === 200
+            return payload.clicks.status === 200
                 ? {
                       ...state,
-                      currentScore: payload.data
+                      currentScore: payload.clicks.data,
+                      leaderBoard: payload.leaderBoard.data
                   }
                 : state;
         case 'GET_LEADERBOARD_REQUEST':

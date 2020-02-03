@@ -5,6 +5,7 @@ import { State } from '../../../redux/types';
 import styled from 'styled-components';
 import { secondary } from '../../shared/Styles';
 import * as data from '../../../helpers/data';
+import { v1 as uuidv1 } from 'uuid';
 
 import Card from '../../shared/ui-elements/Card';
 import TextInput from '../../shared/ui-elements/TextInput';
@@ -76,13 +77,14 @@ const ClickTeam: React.FC<Props> = props => {
         leaderBoard,
         currentScore,
         click,
+        session,
         setSession,
         getLeaderBoard
     } = props;
 
     // ComponentDidMount
     useEffect(() => {
-        setSession('randomly-gen-string');
+        setSession(uuidv1());
         getLeaderBoard();
     }, []);
     return (
@@ -100,7 +102,7 @@ const ClickTeam: React.FC<Props> = props => {
                 <StyledCardTop>
                     <Button
                         text="CLICK!"
-                        onClick={() => click(teamName, 'random-string')}
+                        onClick={() => click(teamName, session || '')}
                     />
                 </StyledCardTop>
                 <CurrentScore
@@ -120,7 +122,8 @@ const ClickTeam: React.FC<Props> = props => {
 const mapStateToProps = (state: State) => {
     return {
         leaderBoard: state.leaderBoard,
-        currentScore: state.currentScore
+        currentScore: state.currentScore,
+        session: state.session
     };
 };
 const mapDispatchToProps = (dispatch: any) => {

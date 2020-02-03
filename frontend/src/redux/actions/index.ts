@@ -11,22 +11,29 @@ export const setSession = (session: string) => {
 
 export const click = (team: string, session: string) => {
     return async (dispatch: any) => {
+        let clicks, data;
         try {
-            // dispatch w/ dummy error handling
-            const clicks = await axios.post(
-                `http://klikuj.herokuapp.com/api/v1/leaderboard`,
+            // post click within a current session
+            clicks = await axios.post(
+                `http://klikuj.herokuapp.com/api/v1/klik`,
                 { team, session }
             );
-            dispatch({
-                type: 'CLICK',
-                payload: clicks || { status: 500, data: {} }
-            });
+            // fetching updated leaderboard
+            data = await axios.get(
+                `http://klikuj.herokuapp.com/api/v1/leaderboard`
+            );
         } catch (err) {
             console.log(new Error(err));
         }
 
-        // re-fetching leaderboard
-        dispatch(getLeaderBoard());
+        // dispatch w/ dummy error handling
+        dispatch({
+            type: 'CLICK',
+            payload: {
+                clicks: clicks || { status: 500, data: {} },
+                leaderBoard: data || { status: 500, data: [] }
+            }
+        });
     };
 };
 
