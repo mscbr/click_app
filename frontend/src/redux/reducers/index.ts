@@ -9,8 +9,6 @@ const initState = {
 };
 
 const rootReducer = (state = initState, action: any) => {
-    console.log(action);
-
     const { payload } = action;
     switch (action.type) {
         case 'SET_SESSION':

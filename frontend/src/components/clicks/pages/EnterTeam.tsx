@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Card from '../../shared/ui-elements/Card';
@@ -29,7 +30,7 @@ const StyledButton = styled(Button)`
     margin-left: 16px;
 `;
 
-interface Props extends State {
+interface Props extends State, RouteComponentProps<{}> {
     getLeaderBoard: () => any;
 }
 
@@ -56,7 +57,13 @@ const EnterTeam: React.FC<Props> = props => {
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
-                    <StyledButton text="CLICK!" />
+                    {/* to={`/${name && name}`}> */}
+                    <StyledButton
+                        text="CLICK!"
+                        onClick={() =>
+                            name ? props.history.push(`/${name}`) : null
+                        }
+                    />
                 </StyledCardTop>
                 <Ribbon title="TOP 10 Clickers" />
                 <ScoreBoard data={leaderBoard} count={10} />

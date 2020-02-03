@@ -28,9 +28,7 @@ const App: React.FC = () => {
             <Router>
                 <Header />
                 <Switch>
-                    <Route path="/" exact>
-                        <EnterTeam />
-                    </Route>
+                    <Route path="/" component={EnterTeam} exact />
                     <Route path="/:teamName" component={ClickTeam} exact />
                     <Redirect to="/" />
                 </Switch>
