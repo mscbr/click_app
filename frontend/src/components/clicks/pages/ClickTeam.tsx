@@ -86,6 +86,8 @@ const ClickTeam: React.FC<Props> = props => {
     useEffect(() => {
         setSession(uuidv1());
         getLeaderBoard();
+        // trick for displaying team_clicks on init
+        click(teamName, session || '');
     }, []);
     return (
         <StyledMain>
@@ -106,7 +108,9 @@ const ClickTeam: React.FC<Props> = props => {
                     />
                 </StyledCardTop>
                 <CurrentScore
-                    your_clicks={currentScore ? currentScore.your_clicks : 0}
+                    your_clicks={
+                        currentScore ? currentScore.your_clicks || 0 : 0
+                    }
                     team_clicks={currentScore ? currentScore.team_clicks : 0}
                 />
                 <ScoreBoard
