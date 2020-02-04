@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { secondary, accentGray } from '../Styles';
+import { secondary } from '../Styles';
 
 const StyledHeader = styled.div`
     display: flex;

@@ -1,4 +1,3 @@
-import * as data from '../../helpers/data';
 const initState = {
     leaderBoard: [],
     currentScore: {

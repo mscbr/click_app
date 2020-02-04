@@ -19,19 +19,21 @@ const StyledTable = styled.table`
         font-size: 0.8em;
         font-weight: bold;
         padding: 0.5em;
-        td:nth-child(2) {
+        th:nth-child(2) {
             text-align: center;
         }
-        td:nth-child(3) {
+        th:nth-child(3) {
             text-align: right;
         }
     }
     tbody {
         tr {
-            th:nth-child(2) {
+            td:nth-child(2) {
                 text-align: left;
+                max-width: 272px;
+                width: 100%;
             }
-            th:nth-child(odd) {
+            td:nth-child(odd) {
                 text-align: right;
             }
         }
