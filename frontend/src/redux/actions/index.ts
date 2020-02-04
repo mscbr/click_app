@@ -2,6 +2,7 @@
 // small app so all actions in one file
 import axios from 'axios';
 
+// seting 'random-string' for clicking session
 export const setSession = (session: string) => {
     return {
         type: 'SET_SESSION',
@@ -9,6 +10,7 @@ export const setSession = (session: string) => {
     };
 };
 
+// sending a click & then updating scoreboard
 export const click = (team: string, session: string) => {
     return async (dispatch: any) => {
         let clicks, data;

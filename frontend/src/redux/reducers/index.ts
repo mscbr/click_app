@@ -7,6 +7,7 @@ const initState = {
     session: ''
 };
 
+// all reducers in one file - relatively small app
 const rootReducer = (state = initState, action: any) => {
     const { payload } = action;
     switch (action.type) {

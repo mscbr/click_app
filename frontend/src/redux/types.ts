@@ -2,6 +2,7 @@ export const SET_SESSION = 'SET_SESSION';
 export const CLICK = 'CLICK';
 export const GET_LEADERBOARD_REQUEST = 'GET_LEADERBOARD_REQUEST';
 
+// init/root state type
 export interface State {
     leaderBoard?: {
         order: number;
@@ -15,6 +16,7 @@ export interface State {
     session?: string;
 }
 
+// one position from leaderboard
 export interface LeaderBoardItem {
     order: number;
     team: string;
@@ -27,6 +29,7 @@ export interface SetSessionAction {
     payload: string;
 }
 
+// click action payload type
 export interface ClickAction {
     type: typeof CLICK;
     payload: {
@@ -41,6 +44,7 @@ export interface ClickAction {
     };
 }
 
+// get leaderboard payload type
 export interface GetLeaderBoardAction {
     type: typeof GET_LEADERBOARD_REQUEST;
     payload: {
