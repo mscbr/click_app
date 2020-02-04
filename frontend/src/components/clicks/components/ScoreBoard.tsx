@@ -6,6 +6,7 @@ import { accentGray } from '../../shared/Styles';
 const StyledTable = styled.table`
     border-collapse: collapse;
     font-size: 0.9rem;
+    max-width: 100%;
     th,
     td {
         padding: 1em;
@@ -58,9 +59,9 @@ const ScoreBoard: React.FC<Props> = props => {
         <StyledTable>
             <thead>
                 <tr>
-                    <td></td>
-                    <td>Team</td>
-                    <td>Clicks</td>
+                    <th></th>
+                    <th>Team</th>
+                    <th>Clicks</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,17 +70,17 @@ const ScoreBoard: React.FC<Props> = props => {
                         if (count)
                             return i < count ? (
                                 <tr key={position.team + i}>
-                                    <th>{position.order}</th>
-                                    <th>{position.team}</th>
-                                    <th>{position.clicks}</th>
+                                    <td>{position.order}</td>
+                                    <td>{position.team}</td>
+                                    <td>{position.clicks}</td>
                                 </tr>
                             ) : null;
 
                         return (
                             <tr key={position.team + i}>
-                                <th>{position.order}</th>
-                                <th>{position.team}</th>
-                                <th>{position.clicks}</th>
+                                <td>{position.order}</td>
+                                <td>{position.team}</td>
+                                <td>{position.clicks}</td>
                             </tr>
                         );
                     })}
