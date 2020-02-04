@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "cd frontend && yarn run build && cd ../backend && yarn && nodemon server.js",
+        "heroku-postbuild": "cd frontend && yarn && yarn run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "mscbr",
