@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "cd backend && node server.js",
-        "start:serve": "yarn && cd frontend && yarn && yarn run build && cd ../backend && node server.js",
+        "start:serve": "yarn && cd frontend && yarn && yarn run build && cd ../client-server && node server.js",
         "heroku-postbuild": "cd frontend && yarn && yarn run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -16,16 +16,16 @@
         "eslint-config-airbnb": "^18.0.1",
         "eslint-config-node": "^4.0.0",
         "eslint-config-prettier": "^6.10.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
         "eslint-plugin-node": "^11.0.0",
         "eslint-plugin-prettier": "^3.1.2",
+        "eslint-plugin-react": "^7.14.3",
+        "eslint-plugin-react-hooks": "^1.7.0",
         "prettier": "^1.19.1"
     },
     "dependencies": {
-        "eslint-plugin-import": "^2.18.2",
-        "eslint-plugin-jsx-a11y": "^6.2.3",
-        "eslint-plugin-react": "^7.14.3",
-        "eslint-plugin-react-hooks": "^1.7.0",
         "express": "^4.17.1",
-        "body-parser": "^1.19.0"
+        "morgan": "^1.9.1"
     }
 }

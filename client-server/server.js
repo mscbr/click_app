@@ -2,7 +2,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const clickRoutes = require('./routes/click');
 
 // Define Global Variables
 const app = express();
@@ -12,8 +11,6 @@ const PORT = process.env.PORT || 3000;
 app.use(morgan('dev'));
 app.use(express.json()); // body-parser
 app.use(express.urlencoded({ extended: false }));
-
-app.use('/api/click', clickRoutes);
 
 // CORS policy
 app.use((req, res, next) => {
@@ -33,31 +30,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// error handling
-app.use((error, req, res, next) => {
-    // if response was already sent
-    if (res.headerSent) return next(error);
+app.use(express.static('../frontend/build'));
 
-    res.status(error.code || 500).json({
-        message: error.message || 'An unknown error occured!'
-    });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/', 'build', 'index.html')); // relative path
 });
-
-// if none of the routes were targeted
-// error creation
-app.use((req, res, next) => {
-    const error = new Error('Not found');
-    error.status = 404;
-
-    res.status(error.status || 500);
-    res.json({
-        error: {
-            message: error.message
-        }
-    });
-    next(error);
-});
-
 
 app.listen(PORT, () => {
     console.log(`Server is starting at PORT: ${PORT}`);
