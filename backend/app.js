@@ -1,19 +1,17 @@
 // Importing Modules
 const express = require('express');
+const mongoose = require('mongoose');
 const morgan = require('morgan');
-const path = require('path');
-const clickRoutes = require('./routes/click');
+const leaderboardRoutes = require('./routes/leaderboard');
 
 // Define Global Variables
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // Configuration
 app.use(morgan('dev'));
 app.use(express.json()); // body-parser
 app.use(express.urlencoded({ extended: false }));
-
-app.use('/api/click', clickRoutes);
 
 // CORS policy
 app.use((req, res, next) => {
@@ -23,15 +21,15 @@ app.use((req, res, next) => {
         'Access-Control-Allow-Headers',
         'Content-Type, Authorization, Origin, X-Requested_with'
     );
-    if (req.method === 'OPTIONS') {
-        res.setHeader(
-            'Access-Control-Allow-Methods',
-            'GET, POST, PUT, PATCH , DELETE'
-        );
-        return this.set.status(200).json({});
-    }
+
+    res.setHeader(
+        'Access-Control-Allow-Methods',
+        'GET, POST, PUT, PATCH , DELETE'
+    );
     next();
 });
+
+app.use('/api/v1/', leaderboardRoutes);
 
 // error handling
 app.use((error, req, res, next) => {
@@ -58,7 +56,22 @@ app.use((req, res, next) => {
     next(error);
 });
 
+// atlas mongodb connection
+mongoose
+    .connect(
+        'mongodb+srv://mscbr:' +
+            process.env.MONGO_ATLAS_PW +
+            '@cluster0-1san1.mongodb.net/events_test?retryWrites=true&w=majority'
+    )
+    .then(() => {
+        console.log('Connected to the db.');
+        console.log(`Connecting on port: ${port}`);
+        app.listen(port);
+    })
+    .catch(() => {
+        console.log('Connection to the db failed!');
+    });
 
-app.listen(PORT, () => {
-    console.log(`Server is starting at PORT: ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`REST api is starting at PORT: ${PORT}`);
+// });
