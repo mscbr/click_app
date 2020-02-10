@@ -1,6 +1,6 @@
-Browser Click App Game.
+Frontend of Browser Click App Game.
 
-Stack: `React`, `Redux`, `Express`, `Node.js` + testing w/ `Jest` - connected to the `https://klikuj.herokuapp.com`
+Stack: `React`, `Redux`, `Express`, `Node.js` + example testing w/ `Jest`
 
 Install + serve with `yarn start:serve` command from root.
 
