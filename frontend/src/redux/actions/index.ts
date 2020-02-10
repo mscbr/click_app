@@ -17,14 +17,12 @@ export const click = (team: string, session: string) => {
         try {
             // post click within a current session
             clicks = await axios.post(
-                // `https://klikuj.herokuapp.com/api/v1/klik`,
-                `http://localhost:5000/api/v1/click`,
+                `https://click-app-rest-mscbr.herokuapp.com/api/v1/click`,
                 { team, session }
             );
             // fetching updated leaderboard
             data = await axios.get(
-                // `https://klikuj.herokuapp.com/api/v1/leaderboard`
-                `http://localhost:5000/api/v1/leaderboard`
+                `https://click-app-rest-mscbr.herokuapp.com/api/v1/leaderboard`
             );
         } catch (err) {
             console.log(new Error(err));
@@ -47,8 +45,7 @@ export const getLeaderBoard = () => {
         let data;
         try {
             data = await axios.get(
-                // `https://klikuj.herokuapp.com/api/v1/leaderboard`
-                `http://localhost:5000/api/v1/leaderboard`,
+                `https://click-app-rest-mscbr.herokuapp.com/api/v1/leaderboard`,
                 { headers: { 'Content-Type': 'application/json' } }
             );
         } catch (err) {
