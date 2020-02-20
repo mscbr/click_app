@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { accentGray } from '../../shared/Styles';
+import { accentGray } from 'components/shared/Styles';
 
 const StyledTable = styled.table`
     border-collapse: collapse;

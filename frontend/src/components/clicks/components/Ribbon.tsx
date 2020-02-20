@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { secondary, accentGray } from '../../shared/Styles';
+import { secondary, accentGray } from 'components/shared/Styles';
 
 const StyledRibbon = styled.div`
     padding: 1em;

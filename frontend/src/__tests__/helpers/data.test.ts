@@ -1,4 +1,4 @@
-import * as data from '../../helpers/data';
+import * as data from 'helpers/data';
 
 // dummy data
 const LEADERBOARD = [
@@ -14,7 +14,7 @@ const LEADERBOARD = [
     },
     {
         order: 3,
-        team: 'kkk.',
+        team: 'kkkk.',
         clicks: 219411
     },
     {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { secondary } from '../../shared/Styles';
+import { secondary } from 'components/shared/Styles';
 
 const ScorePanel = styled.div`
     text-align: center;

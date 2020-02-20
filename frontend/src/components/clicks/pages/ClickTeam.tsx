@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
-import { State } from '../../../redux/types';
+import { State } from 'redux/types';
 import styled from 'styled-components';
-import { secondary } from '../../shared/Styles';
-import * as data from '../../../helpers/data';
+import { secondary } from 'components/shared/Styles';
+import * as data from 'helpers/data';
 import { v1 as uuidv1 } from 'uuid';
 
-import Card from '../../shared/ui-elements/Card';
-import TextInput from '../../shared/ui-elements/TextInput';
-import Button from '../../shared/ui-elements/Button';
+import Card from 'components/shared/ui-elements/Card';
+import TextInput from 'components/shared/ui-elements/TextInput';
+import Button from 'components/shared/ui-elements/Button';
 import ScoreBoard from '../components/ScoreBoard';
 import CurrentScore from '../components/CurrentScore';
 
-import { click, setSession, getLeaderBoard } from '../../../redux/actions/';
+import { click, setSession, getLeaderBoard } from 'redux/actions/';
 
 const StyledMain = styled.main`
     max-width: 500px;
