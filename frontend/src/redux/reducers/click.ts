@@ -26,7 +26,7 @@ const initState = {
     loadingClick: 'success'
 };
 
-type ClickReducerActions =
+export type ClickReducerActions =
     | setSession
     | clickRequest
     | clickSuccess

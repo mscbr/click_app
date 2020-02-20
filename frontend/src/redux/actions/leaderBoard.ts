@@ -2,7 +2,10 @@ import axios from 'axios';
 import { AnyAction, Dispatch, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { ReduxActionTypes, ReduxBaseAction } from 'redux/reducers/index';
-import { LeaderBoardItem, LeaderBoardState } from 'redux/reducers/leaderBoard';
+import {
+    LeaderBoardItem,
+    LeaderBoardReducerActions
+} from 'redux/reducers/leaderBoard';
 
 export interface LeaderBoardRequest extends ReduxBaseAction {
     type: ReduxActionTypes.LEADERBOARD_REQUEST;
@@ -20,17 +23,11 @@ export interface LeaderBoardFailed extends ReduxBaseAction {
     };
 }
 
-// ??
-// export type LeaderBoardReducerActions =
-//     | LeaderBoardRequest
-//     | LeaderBoardSuccess
-//     | LeaderBoardFailed;
-
 export const getLeaderBoard: ActionCreator<ThunkAction<
     Promise<AnyAction>,
     AnyAction,
     undefined,
-    AnyAction
+    LeaderBoardReducerActions
 >> = () => {
     return async (dispatch: Dispatch) => {
         // set loadingBoard: 'pending'

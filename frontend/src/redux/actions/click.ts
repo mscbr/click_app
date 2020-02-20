@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { AnyAction, Dispatch, ActionCreator } from 'redux';
+import { AnyAction, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { ReduxActionTypes, ReduxBaseAction } from 'redux/reducers/index';
-import { CurrentScore } from 'redux/reducers/click';
+import { CurrentScore, ClickReducerActions } from 'redux/reducers/click';
 import { getLeaderBoard } from './leaderBoard';
 
 export interface setSession extends ReduxBaseAction {
@@ -39,7 +39,7 @@ export const click: ActionCreator<ThunkAction<
     Promise<AnyAction>,
     AnyAction,
     undefined,
-    AnyAction
+    ClickReducerActions
 >> = (team: string, session: string) => {
     return async (dispatch: any) => {
         // set loadingClick: 'pending'

@@ -21,7 +21,7 @@ const initState = {
     loadingBoard: 'success'
 };
 
-type LeaderBoardReducerActions =
+export type LeaderBoardReducerActions =
     | LeaderBoardRequest
     | LeaderBoardSuccess
     | LeaderBoardFailed;
