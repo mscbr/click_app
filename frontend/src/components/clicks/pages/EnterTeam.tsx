@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Card from '../../shared/ui-elements/Card';
-import TextInput from '../../shared/ui-elements/TextInput';
-import Button from '../../shared/ui-elements/Button';
-import QuoteBlock from '../../clicks/components/QuoteBlock';
-import Ribbon from '../../clicks/components/Ribbon';
+import Card from 'components/shared/ui-elements/Card';
+import TextInput from 'components/shared/ui-elements/TextInput';
+import Button from 'components/shared/ui-elements/Button';
+import QuoteBlock from '../components/QuoteBlock';
+import Ribbon from '../components/Ribbon';
 import ScoreBoard from '../components/ScoreBoard';
 
-import { getLeaderBoard } from '../../../redux/actions/';
+import { getLeaderBoard } from 'redux/actions/';
 
 const StyledMain = styled.main`
     max-width: 500px;

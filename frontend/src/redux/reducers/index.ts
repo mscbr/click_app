@@ -1,14 +1,17 @@
+import { State } from '../types';
+
 const initState = {
     leaderBoard: [],
     currentScore: {
         your_clicks: 0,
         team_clicks: 0
     },
-    session: ''
+    session: '',
+    loadingData: 'success'
 };
 
 // all reducers in one file - relatively small app
-const rootReducer = (state = initState, action: any) => {
+const rootReducer = (state: State = initState, action: any) => {
     const { payload } = action;
     switch (action.type) {
         case 'SET_SESSION':
@@ -24,13 +27,22 @@ const rootReducer = (state = initState, action: any) => {
                       leaderBoard: payload.leaderBoard.data
                   }
                 : state;
-        case 'GET_LEADERBOARD_REQUEST':
-            return payload.status === 200
-                ? {
-                      ...state,
-                      leaderBoard: payload.data
-                  }
-                : state;
+        case 'LEADERBOARD_REQUEST':
+            return {
+                ...state,
+                loadingData: 'pending'
+            };
+        case 'LEADERBOARD_SUCCESS':
+            return {
+                ...state,
+                loadingData: 'success',
+                leaderBoard: payload.data
+            };
+        case 'LEADERBOARD_FAILED':
+            return {
+                ...state,
+                loadingData: 'error'
+            };
         default:
             return state;
     }
