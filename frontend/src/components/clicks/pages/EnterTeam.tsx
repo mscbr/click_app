@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { RouteComponentProps } from 'react-router-dom';
+import { AppState } from 'redux/reducers/index';
 import styled from 'styled-components';
 
 import Card from 'components/shared/ui-elements/Card';
@@ -10,7 +13,8 @@ import QuoteBlock from '../components/QuoteBlock';
 import Ribbon from '../components/Ribbon';
 import ScoreBoard from '../components/ScoreBoard';
 
-import { getLeaderBoard } from 'redux/actions/';
+import { getLeaderBoard } from 'redux/actions/leaderBoard';
+import { LeaderBoardState } from 'redux/reducers/leaderBoard';
 
 const StyledMain = styled.main`
     max-width: 500px;
@@ -30,13 +34,14 @@ const StyledButton = styled(Button)`
     margin-left: 16px;
 `;
 
-interface Props extends State, RouteComponentProps<{}> {
-    getLeaderBoard: () => any;
+interface Props extends LeaderBoardState, RouteComponentProps<{}> {
+    getLeaderBoard: () => Promise<AnyAction>;
 }
 
 const EnterTeam: React.FC<Props> = props => {
     const [name, setName] = useState();
     const { leaderBoard, getLeaderBoard } = props;
+    console.log('EnterTeam props', props);
 
     // ComponentDidMount
     useEffect(() => {
@@ -66,30 +71,20 @@ const EnterTeam: React.FC<Props> = props => {
                     />
                 </StyledCardTop>
                 <Ribbon title="TOP 10 Clickers" />
-                <ScoreBoard data={leaderBoard} count={10} />
+                <ScoreBoard data={leaderBoard || []} count={10} />
                 <StyledP>Want to be top? STFU and click!</StyledP>
             </Card>
         </StyledMain>
     );
 };
 
-interface State {
-    leaderBoard?: {
-        order: number;
-        team: string;
-        clicks: number;
-    }[];
-    currentScore?: {
-        your_clicks: number;
-        team_clicks: number;
-    };
-}
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: AppState) => {
+    console.log('state:', state);
     return {
-        leaderBoard: state.leaderBoard
+        leaderBoard: state.leaderBoardReducer.leaderBoard
     };
 };
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => {
     return {
         getLeaderBoard: () => dispatch(getLeaderBoard())
     };

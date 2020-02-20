@@ -1,5 +1,5 @@
 import * as types from '../../redux/types';
-import * as actions from '../../redux/actions/index';
+import * as actions from '../../redux/actions/click';
 
 describe('actions', () => {
     it('setSession', () => {

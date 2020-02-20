@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { RouteComponentProps } from 'react-router-dom';
-import { State } from 'redux/types';
+import { AppState } from 'redux/reducers/index';
 import styled from 'styled-components';
 import { secondary } from 'components/shared/Styles';
 import * as data from 'helpers/data';
@@ -13,7 +15,10 @@ import Button from 'components/shared/ui-elements/Button';
 import ScoreBoard from '../components/ScoreBoard';
 import CurrentScore from '../components/CurrentScore';
 
-import { click, setSession, getLeaderBoard } from 'redux/actions/';
+import { click, setSession } from 'redux/actions/click';
+import { ClickState } from 'redux/reducers/click';
+import { getLeaderBoard } from 'redux/actions/leaderBoard';
+import { LeaderBoardState } from 'redux/reducers/leaderBoard';
 
 const StyledMain = styled.main`
     max-width: 500px;
@@ -65,7 +70,10 @@ const StyledCopyPaste = styled.div`
     }
 `;
 
-interface Props extends RouteComponentProps<{ teamName: string }>, State {
+interface Props
+    extends RouteComponentProps<{ teamName: string }>,
+        LeaderBoardState,
+        ClickState {
     click: (team: string, session: string) => any;
     setSession: (session: string) => any;
     getLeaderBoard: () => any;
@@ -123,14 +131,16 @@ const ClickTeam: React.FC<Props> = props => {
     );
 };
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: AppState) => {
     return {
-        leaderBoard: state.leaderBoard,
-        currentScore: state.currentScore,
-        session: state.session
+        leaderBoard: state.leaderBoardReducer.leaderBoard,
+        currentScore: state.clickReducer.currentScore,
+        session: state.clickReducer.session
     };
 };
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (
+    dispatch: ThunkDispatch<any, any, AnyAction> | any
+) => {
     return {
         click: (team: string, session: string) =>
             dispatch(click(team, session)),

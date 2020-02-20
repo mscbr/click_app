@@ -1,51 +1,30 @@
-import { State } from '../types';
+import { combineReducers } from 'redux';
+import leaderBoardReducer, { LeaderBoardState } from './leaderBoard';
+import clickReducer, { ClickState } from './click';
 
-const initState = {
-    leaderBoard: [],
-    currentScore: {
-        your_clicks: 0,
-        team_clicks: 0
-    },
-    session: '',
-    loadingData: 'success'
-};
+export enum ReduxActionTypes {
+    SET_SESSION = 'SET_SESSION',
+    CLICK_REQUEST = 'CLICK_REQUEST',
+    CLICK_SUCCESS = 'CLICK_SUCCESS',
+    CLICK_FAILED = 'CLICK_FAILED',
+    LEADERBOARD_REQUEST = 'LEADERBOARD_REQUEST',
+    LEADERBOARD_SUCCESS = 'LEADERBOARD_SUCCESS',
+    LEADERBOARD_FAILED = 'LEADERBOARD_FAILED'
+}
 
-// all reducers in one file - relatively small app
-const rootReducer = (state: State = initState, action: any) => {
-    const { payload } = action;
-    switch (action.type) {
-        case 'SET_SESSION':
-            return {
-                ...state,
-                session: payload
-            };
-        case 'CLICK':
-            return payload.clicks.status === 200
-                ? {
-                      ...state,
-                      currentScore: payload.clicks.data,
-                      leaderBoard: payload.leaderBoard.data
-                  }
-                : state;
-        case 'LEADERBOARD_REQUEST':
-            return {
-                ...state,
-                loadingData: 'pending'
-            };
-        case 'LEADERBOARD_SUCCESS':
-            return {
-                ...state,
-                loadingData: 'success',
-                leaderBoard: payload.data
-            };
-        case 'LEADERBOARD_FAILED':
-            return {
-                ...state,
-                loadingData: 'error'
-            };
-        default:
-            return state;
-    }
+export interface ReduxBaseAction {
+    type: ReduxActionTypes;
+}
+
+const rootReducer = combineReducers({
+    leaderBoardReducer,
+    clickReducer
+});
+
+// export type AppState = ReturnType<typeof rootReducer>;
+export type AppState = {
+    leaderBoardReducer: LeaderBoardState;
+    clickReducer: ClickState;
 };
 
 export default rootReducer;
