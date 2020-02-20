@@ -41,7 +41,6 @@ interface Props extends LeaderBoardState, RouteComponentProps<{}> {
 const EnterTeam: React.FC<Props> = props => {
     const [name, setName] = useState();
     const { leaderBoard, getLeaderBoard } = props;
-    console.log('EnterTeam props', props);
 
     // ComponentDidMount
     useEffect(() => {
@@ -79,7 +78,6 @@ const EnterTeam: React.FC<Props> = props => {
 };
 
 const mapStateToProps = (state: AppState) => {
-    console.log('state:', state);
     return {
         leaderBoard: state.leaderBoardReducer.leaderBoard
     };

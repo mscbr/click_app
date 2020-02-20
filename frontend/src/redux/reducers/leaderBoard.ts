@@ -34,20 +34,20 @@ const leaderBoardReducer = (
         case ReduxActionTypes.LEADERBOARD_REQUEST:
             return {
                 ...state,
-                loadingData: 'pending',
+                loadingBoard: 'pending',
                 errorMessage: ''
             };
         case ReduxActionTypes.LEADERBOARD_SUCCESS:
             return {
                 ...state,
-                loadingData: 'success',
+                loadingBoard: 'success',
                 leaderBoard: action.payload.data,
                 errorMessage: ''
             };
         case ReduxActionTypes.LEADERBOARD_FAILED:
             return {
                 ...state,
-                loadingData: 'error',
+                loadingBoard: 'error',
                 errorMessage: action.payload.errorMessage
             };
         default:
