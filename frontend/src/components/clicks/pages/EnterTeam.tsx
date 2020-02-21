@@ -55,6 +55,7 @@ const EnterTeam: React.FC<Props> = props => {
                 setScores(<ScoreBoard data={leaderBoard || []} count={10} />);
                 return;
             case 'error':
+                // component for handling error display should be build
                 setScores(<h2>Server Error</h2>);
                 return;
             default:

@@ -111,6 +111,7 @@ const ClickTeam: React.FC<Props> = props => {
                 );
                 return;
             case 'error':
+                // component for handling error display should be build
                 setScore(<h2>Server Error</h2>);
                 return;
             default:
