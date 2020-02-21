@@ -88,7 +88,7 @@ const EnterTeam: React.FC<Props> = props => {
                 </StyledCardTop>
                 <Ribbon title="TOP 10 Clickers" />
                 {scores}
-                <StyledP>Want to be top? STFU and click!</StyledP>
+                <StyledP>Want to be top? Just CLICK!</StyledP>
             </Card>
         </StyledMain>
     );

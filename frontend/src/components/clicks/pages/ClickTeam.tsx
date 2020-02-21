@@ -157,7 +157,7 @@ const ClickTeam: React.FC<Props> = props => {
                 ) : (
                     <LoadingSpinner />
                 )}
-                <StyledP>Want to be top? STFU and click!</StyledP>
+                <StyledP>Want to be top? Just CLICK!</StyledP>
             </Card>
         </StyledMain>
     );
