@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -12,6 +12,7 @@ import { v1 as uuidv1 } from 'uuid';
 import Card from 'components/shared/ui-elements/Card';
 import TextInput from 'components/shared/ui-elements/TextInput';
 import Button from 'components/shared/ui-elements/Button';
+import LoadingSpinner from 'components/shared/ui-elements/LoadingSpinner';
 import ScoreBoard from '../components/ScoreBoard';
 import CurrentScore from '../components/CurrentScore';
 
@@ -86,9 +87,33 @@ const ClickTeam: React.FC<Props> = props => {
         currentScore,
         click,
         session,
+        loadingClick,
         setSession,
         getLeaderBoard
     } = props;
+    const [score, setScore] = useState();
+
+    useEffect(() => {
+        switch (loadingClick) {
+            case 'pending':
+                setScore(<LoadingSpinner />);
+                return;
+            case 'success':
+                setScore(
+                    <CurrentScore
+                        your_clicks={
+                            currentScore ? currentScore.your_clicks || 0 : 0
+                        }
+                        team_clicks={
+                            currentScore ? currentScore.team_clicks : 0
+                        }
+                    />
+                );
+                return;
+            default:
+                setScore(<LoadingSpinner />);
+        }
+    }, [loadingClick]);
 
     // ComponentDidMount
     useEffect(() => {
@@ -97,6 +122,7 @@ const ClickTeam: React.FC<Props> = props => {
         // trick for displaying team_clicks on init
         click(teamName, session || '');
     }, []);
+
     return (
         <StyledMain>
             <StyledH1>
@@ -115,16 +141,19 @@ const ClickTeam: React.FC<Props> = props => {
                         onClick={() => click(teamName, session || '')}
                     />
                 </StyledCardTop>
-                <CurrentScore
-                    your_clicks={
-                        currentScore ? currentScore.your_clicks || 0 : 0
-                    }
-                    team_clicks={currentScore ? currentScore.team_clicks : 0}
-                />
-                <ScoreBoard
-                    data={data.scoreBoardBandPass(leaderBoard || [], teamName)}
-                    count={7}
-                />
+                {score}
+                {/* loading logic handled different way in order to improve user experience */}
+                {leaderBoard !== [] ? (
+                    <ScoreBoard
+                        data={data.scoreBoardBandPass(
+                            leaderBoard || [],
+                            teamName
+                        )}
+                        count={7}
+                    />
+                ) : (
+                    <LoadingSpinner />
+                )}
                 <StyledP>Want to be top? STFU and click!</StyledP>
             </Card>
         </StyledMain>
@@ -132,10 +161,13 @@ const ClickTeam: React.FC<Props> = props => {
 };
 
 const mapStateToProps = (state: AppState) => {
+    const { leaderBoard } = state.leaderBoardReducer;
+    const { currentScore, session, loadingClick } = state.clickReducer;
     return {
-        leaderBoard: state.leaderBoardReducer.leaderBoard,
-        currentScore: state.clickReducer.currentScore,
-        session: state.clickReducer.session
+        leaderBoard,
+        currentScore,
+        session,
+        loadingClick
     };
 };
 const mapDispatchToProps = (
