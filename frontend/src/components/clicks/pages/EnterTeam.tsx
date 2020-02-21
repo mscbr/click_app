@@ -11,6 +11,7 @@ import TextInput from 'components/shared/ui-elements/TextInput';
 import Button from 'components/shared/ui-elements/Button';
 import QuoteBlock from '../components/QuoteBlock';
 import Ribbon from '../components/Ribbon';
+import LoadingSpinner from 'components/shared/ui-elements/LoadingSpinner';
 import ScoreBoard from '../components/ScoreBoard';
 
 import { getLeaderBoard } from 'redux/actions/leaderBoard';
@@ -40,7 +41,21 @@ interface Props extends LeaderBoardState, RouteComponentProps<{}> {
 
 const EnterTeam: React.FC<Props> = props => {
     const [name, setName] = useState();
-    const { leaderBoard, getLeaderBoard } = props;
+    const [scores, setScores] = useState();
+    const { leaderBoard, getLeaderBoard, loadingBoard } = props;
+
+    useEffect(() => {
+        switch (loadingBoard) {
+            case 'pending':
+                setScores(<LoadingSpinner />);
+                return;
+            case 'success':
+                setScores(<ScoreBoard data={leaderBoard || []} count={10} />);
+                return;
+            default:
+                setScores(<LoadingSpinner />);
+        }
+    }, [loadingBoard]);
 
     // ComponentDidMount
     useEffect(() => {
@@ -61,7 +76,6 @@ const EnterTeam: React.FC<Props> = props => {
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
-                    {/* to={`/${name && name}`}> */}
                     <StyledButton
                         text="CLICK!"
                         onClick={() =>
@@ -70,7 +84,7 @@ const EnterTeam: React.FC<Props> = props => {
                     />
                 </StyledCardTop>
                 <Ribbon title="TOP 10 Clickers" />
-                <ScoreBoard data={leaderBoard || []} count={10} />
+                {scores}
                 <StyledP>Want to be top? STFU and click!</StyledP>
             </Card>
         </StyledMain>
@@ -78,8 +92,10 @@ const EnterTeam: React.FC<Props> = props => {
 };
 
 const mapStateToProps = (state: AppState) => {
+    const { leaderBoard, loadingBoard } = state.leaderBoardReducer;
     return {
-        leaderBoard: state.leaderBoardReducer.leaderBoard
+        leaderBoard,
+        loadingBoard
     };
 };
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => {
