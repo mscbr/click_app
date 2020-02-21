@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { accentGray } from 'components/shared/Styles';
+import { accentGray, accent } from 'components/shared/Styles';
 
 const StyledTable = styled.table`
     border-collapse: collapse;
@@ -41,7 +41,7 @@ const StyledTable = styled.table`
             background: ${accentGray};
         }
         tr:nth-child(odd) {
-            background: #9dcbcd;
+            background: ${accent};
         }
     }
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import { fontColor } from 'components/shared/Styles';
 
 const StyledFooter = styled.div`
     bottom: 0;
@@ -8,7 +9,7 @@ const StyledFooter = styled.div`
     width: 100vw;
     height: 30px;
     background: transparent;
-    color: black;
+    color: ${fontColor};
     text-align: center;
     margin: 0;
     span {

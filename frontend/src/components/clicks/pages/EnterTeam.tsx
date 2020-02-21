@@ -5,6 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { RouteComponentProps } from 'react-router-dom';
 import { AppState } from 'redux/reducers/index';
 import styled from 'styled-components';
+import { fontColor } from 'components/shared/Styles';
 
 import Card from 'components/shared/ui-elements/Card';
 import TextInput from 'components/shared/ui-elements/TextInput';
@@ -21,6 +22,7 @@ const StyledMain = styled.main`
     max-width: 500px;
     margin: 0 auto;
     padding: 0 24px;
+    color: ${fontColor};
 `;
 const StyledCardTop = styled.div`
     display: flex;

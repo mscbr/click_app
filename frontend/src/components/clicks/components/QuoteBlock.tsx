@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// props:
-/// paragraph
-/// citee
-
 const StyledBlockQuote = styled.blockquote`
     padding: 1em;
     font-style: italic;
