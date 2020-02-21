@@ -110,6 +110,9 @@ const ClickTeam: React.FC<Props> = props => {
                     />
                 );
                 return;
+            case 'error':
+                setScore(<h2>Server Error</h2>);
+                return;
             default:
                 setScore(<LoadingSpinner />);
         }
@@ -143,7 +146,7 @@ const ClickTeam: React.FC<Props> = props => {
                 </StyledCardTop>
                 {score}
                 {/* loading logic handled different way in order to improve user experience */}
-                {leaderBoard !== [] ? (
+                {leaderBoard && leaderBoard.length ? (
                     <ScoreBoard
                         data={data.scoreBoardBandPass(
                             leaderBoard || [],

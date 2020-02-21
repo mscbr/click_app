@@ -52,6 +52,9 @@ const EnterTeam: React.FC<Props> = props => {
             case 'success':
                 setScores(<ScoreBoard data={leaderBoard || []} count={10} />);
                 return;
+            case 'error':
+                setScores(<h2>Server Error</h2>);
+                return;
             default:
                 setScores(<LoadingSpinner />);
         }
