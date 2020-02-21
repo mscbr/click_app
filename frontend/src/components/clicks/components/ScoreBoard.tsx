@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { accentGray } from 'components/shared/Styles';
+import { accentGray, accent } from 'components/shared/Styles';
 
 const StyledTable = styled.table`
     border-collapse: collapse;
@@ -41,7 +41,7 @@ const StyledTable = styled.table`
             background: ${accentGray};
         }
         tr:nth-child(odd) {
-            background: #9dcbcd;
+            background: ${accent};
         }
     }
 `;
@@ -73,7 +73,12 @@ const ScoreBoard: React.FC<Props> = props => {
                             return i < count ? (
                                 <tr key={position.team + i}>
                                     <td>{position.order}</td>
-                                    <td>{position.team}</td>
+                                    <td>
+                                        {position.team.length < 30
+                                            ? position.team
+                                            : position.team.slice(0, 30) +
+                                              '...'}
+                                    </td>
                                     <td>{position.clicks}</td>
                                 </tr>
                             ) : null;

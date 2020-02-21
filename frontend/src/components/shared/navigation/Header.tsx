@@ -23,7 +23,7 @@ const StyledHeader = styled.div`
 const Header: React.FC = () => {
     return (
         <StyledHeader>
-            <span>STFU_CLICK.COM</span>
+            <span>{'click-app-mscbr.herokuapp.com'.toUpperCase()}</span>
         </StyledHeader>
     );
 };

@@ -16,10 +16,10 @@ const StyledSpinner = styled.div`
     display: block;
     position: relative;
     top: 50%;
-    left: 50%;
+    left: 45%;
     height: 50px;
     width: 50px;
-    margin: 25px 0 25px 0;
+    margin: 20px 0 20px 0;
     border: 4px ${secondary} solid;
     border-top: 4px ${primary} solid;
     border-bottom: 4px ${primary} solid;

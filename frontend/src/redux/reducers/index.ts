@@ -21,7 +21,6 @@ const rootReducer = combineReducers({
     clickReducer
 });
 
-// export type AppState = ReturnType<typeof rootReducer>;
 export type AppState = {
     leaderBoardReducer: LeaderBoardState;
     clickReducer: ClickState;

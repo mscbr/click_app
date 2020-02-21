@@ -4,9 +4,9 @@ Stack: `React`, `Redux`, `Express`, `Node.js` + example testing w/ `Jest`
 
 Install + serve with `yarn start:serve` command from root.
 
-React components kept in a functional manner.
+React components kept in a functional manner. Code intended to be verbose. `Redux` is quite big tool for an actual amount of components.
 
-Redux implemented in simple way: - all reducers & actions in one file - no proper asynchronous handling implemented (start of the request -> request -> request finished -> error handling)
+For this scale of project `Context API` would also make the job.
 
 Example testing implemented - just for one action & one helper function.
 
