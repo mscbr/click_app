@@ -20,7 +20,7 @@ const StyledTable = styled.table`
         font-weight: bold;
         padding: 0.5em;
         th:nth-child(2) {
-            text-align: center;
+            text-align: left;
         }
         th:nth-child(3) {
             text-align: right;
